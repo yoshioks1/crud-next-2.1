@@ -39,7 +39,7 @@ function ProductView({data_prop}) {
 
 export const getServerSideProps = async ({ query }) => {
   const { data: product} = await axios.get(
-    "http://localhost:3000/api/products/" + query.id
+    "https://crudnext-taski.vercel.app/api/products/" + query.id
   );
 
   //console.log(product)

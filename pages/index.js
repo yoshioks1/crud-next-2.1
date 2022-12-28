@@ -25,7 +25,7 @@ function index({products}) {
 export default index;
 //getServerSideProps se ejecuta en el backend antes de hacer render al front end
 export const getServerSideProps = async (context) => {
-  const res = await axios.get("http://localhost:3000/api/products");
+  const res = await axios.get("https://crudnext-taski.vercel.app/api/products");
   //console.log(res.data);
 
   return {
