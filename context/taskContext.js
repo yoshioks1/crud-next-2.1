@@ -45,6 +45,7 @@ export const TasksProvider = ({ children }) => {
       //console.log(id); console.log(product_details);
       const res = await axios.put("/api/products/" + id, product_details);
       await toast.success("Task Updated", {position: toast.POSITION.TOP_RIGHT});
+      setModalDelete(!ModalDelete);
       setTimeout(()=>router.push('/'), 3000);
     } catch (error) {
       console.error(error.response.data.message);
