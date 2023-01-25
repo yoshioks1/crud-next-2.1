@@ -11,7 +11,7 @@ import { useContext } from "react";
 import { TaskContext } from "../context/taskContext";
 
 
-function index() { //{products}
+function Index() { //{products}
   const {products,loadProducts} = useContext(TaskContext);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function index() { //{products}
     </Layout>
   )
 }
-export default index;
+export default Index;
 
 //getServerSideProps se ejecuta en el backend antes de hacer render al front end
 /*

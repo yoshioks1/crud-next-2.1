@@ -5,7 +5,7 @@ import { TaskContext } from "../context/taskContext";
 import { useContext } from "react";
 
 
-function about() {
+function About() {
   const { hello } = useContext(TaskContext);
   console.log(hello);
 
@@ -18,4 +18,4 @@ function about() {
   )
 }
 
-export default about
+export default About
