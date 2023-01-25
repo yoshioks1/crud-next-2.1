@@ -18,6 +18,7 @@ export default async function handler(req, res) {
   
   const getTask = async (req, res) => {
     try {
+      //console.log('intentado pull id');
       const result = await pool.query("SELECT * FROM nx_product WHERE id = ?", [
         req.query.id,
       ]);

@@ -6,24 +6,35 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Layout } from "../components/Layout";
 import { ProductCard } from "../components/ProductCard";
+//Traer variables de context Api
+import { useContext } from "react";
+import { TaskContext } from "../context/taskContext";
 
-function index({products}) {
+
+function index() { //{products}
+  const {products,loadProducts} = useContext(TaskContext);
+
+  useEffect(() => {
+    loadProducts();
+  }, [])
+
   //console.log(products)
   return (
     <Layout>
-    <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-      
-      
-      {products.map(product=>(
-        <ProductCard key={product.id} product={product}/>
-      ))}
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        
+        {products.map(product=>(
+          <ProductCard key={product.id} product={product}/>
+        ))}
 
-    </div>
+      </div>
     </Layout>
   )
 }
 export default index;
+
 //getServerSideProps se ejecuta en el backend antes de hacer render al front end
+/*
 export const getServerSideProps = async (context) => {
   const res = await axios.get("https://crudnext-taski.vercel.app/api/products");
   //console.log(res.data);
@@ -34,3 +45,4 @@ export const getServerSideProps = async (context) => {
     },
   };
 }
+*/

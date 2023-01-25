@@ -5,8 +5,15 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/router";
 
+//Traer variables de context Api
+import { useContext } from "react";
+import { TaskContext } from "../context/taskContext";
+
+import ModalUpdate_obj from "../components/modal_update.js";
 
 export function ProductForm() {
+
+  const {showUpdateModal,ModalUpdate} = useContext(TaskContext);
  
   const [product, setProduct] = useState({
     name: "",
@@ -24,7 +31,7 @@ export function ProductForm() {
   useEffect(() => {
     const fetchProduct = async (id) => {
       const { data } = await axios.get("/api/products/" + id);
-      console.log(data);
+      //console.log(data);
       setProduct({name:data.name, description:data.description, price:data.price});
     };
     if (router.query?.id) {
@@ -39,14 +46,13 @@ export function ProductForm() {
         e.preventDefault();
         try {
           if (router.query?.id) {
+            showUpdateModal(router.query?.id); //para cambiar la variable boolean y poder renderizar modal window
+            /*
             //console.log('Updating a product');
-            const res = await axios.put("/api/products/" + router.query.id,product);
-            
+            const res = await axios.put("/api/products/" + router.query.id, product);
             await toast.success("Task Updated", {position: toast.POSITION.TOP_RIGHT});
-            //await delay(3000);
-            //router.push('/');
             setTimeout(()=>router.push('/'), 3000);
-            
+            */
           }else{
             //console.log('Creating a product');
             const res = await axios.post("/api/products/" , product);
@@ -108,6 +114,8 @@ export function ProductForm() {
               {router.query.id ? 'Update':'Add'}
             </button>
           </form>
+
+          {ModalUpdate && <ModalUpdate_obj showModal={ModalUpdate} data_rec={product} data_product_id={router.query.id}/>}
         </div>
       );
 
