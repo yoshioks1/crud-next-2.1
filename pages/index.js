@@ -45,10 +45,10 @@ export const getServerSideProps = async (context) => {
   
   const taskCron = async () => {
     console.log('Trigger taskCron');
-    const results = await axios.post("http://localhost:3000/api/random");
+    const results = await axios.post("https://repo-crudnext22.vercel.app/api/random");
     console.log(results);
   }; 
-  
+
   //Execute every 15minutes
   cron.schedule("*/15 * * * *",taskCron).start();
 
