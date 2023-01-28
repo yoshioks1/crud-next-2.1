@@ -11,6 +11,9 @@ import { useContext } from "react";
 import { TaskContext } from "../context/taskContext";
 
 
+
+
+
 function Index() { //{products}
   const {products,loadProducts} = useContext(TaskContext);
 
@@ -34,15 +37,28 @@ function Index() { //{products}
 export default Index;
 
 //getServerSideProps se ejecuta en el backend antes de hacer render al front end
-/*
+
 export const getServerSideProps = async (context) => {
+  const child_process = require('child_process');
+  const cron = require('node-cron');
+  
+  
+  const taskCron = async () => {
+    console.log('Trigger taskCron');
+    const results = await axios.post("http://localhost:3000/api/random");
+    console.log(results);
+  }; 
+  
+  //Execute every 15minutes
+  cron.schedule("*/15 * * * *",taskCron).start();
+
   const res = await axios.get("https://crudnext-taski.vercel.app/api/products");
   //console.log(res.data);
-
   return {
     props: {
       products: res.data,
     },
   };
+  
 }
-*/
+

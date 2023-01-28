@@ -1,5 +1,6 @@
 //import Query from "mysql2/typings/mysql/lib/protocol/sequences/Query";
 import { pool } from "../../../config/db";
+import axios from "axios";
 
   export default async function handler(req,res){
 
