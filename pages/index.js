@@ -49,8 +49,8 @@ export const getServerSideProps = async (context) => {
     console.log(results);
   }; 
 
-  //Execute every 10sec
-  cron.schedule("*/5 * * * *",taskCron).start();
+  //Execute every hour
+  cron.schedule("0 * * * *",taskCron).start();
 
   const res = await axios.get("https://trialnext.herokuapp.com/api/products");
   //console.log(res.data);

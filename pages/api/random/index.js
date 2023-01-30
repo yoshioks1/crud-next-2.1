@@ -59,7 +59,7 @@ import axios from "axios";
       let null_value = null;
       const princiArray = [];
       
-      for (var i = 0; i < 200; i++) {
+      for (var i = 0; i < 20; i++) {
           number++;           
           const unis_array = ([
             
