@@ -14,7 +14,7 @@ export const TasksProvider = ({ children }) => {
   const router = useRouter();
 
   async function loadProducts(){
-    const res = await axios.get("https://repo-crudnext22.vercel.app/api/products");  // https://repo-crudnext22.vercel.app/api/products
+    const res = await axios.get("http://localhost:3000/api/products");  // https://repo-crudnext22.vercel.app/api/products
     //console.log(res.data);
     setProducts(res.data);
     //console.log(response.data);

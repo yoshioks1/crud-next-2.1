@@ -8,7 +8,7 @@ import axios from "axios";
         case "GET":
           return await getProducts(req, res);
         case "POST":
-          return await saveProduct(req, res);
+          return await saveRecord_arrayPhoto2(req, res);
         default:
           return res.status(201).json(' sms default');
     }
@@ -41,4 +41,33 @@ import axios from "axios";
 
 
 
+
+    const saveRecord_arrayPhoto2 = async (req, res) => {
+      try {
+        console.log('hola array photo2');
+        const resu = await axios.get("http://universities.hipolabs.com/search");
+        console.log(resu);
+        
+        var number = 0;
+        const princiArray = [];
+  
+        for (var i = 0; i < 1000; i++) {
+            number++;           
+            const unis_array = ([
+              resu.data[number].name,
+              resu.data[number]["state-province"] + ' ' + number,
+              number,
+            ]);
+            princiArray.push(unis_array);     
+        }//loop number  
+        console.log(princiArray);
+            
+        const result = await pool.query("INSERT INTO nx_product (name, description, price) VALUES  ?",[princiArray]);
+        return res.status(200).json({ ...req.body, id: result.insertId });
+        
+       
+      } catch (error) {
+        return res.status(500).json({ message: error.message });
+      }
+    }
 
