@@ -15,7 +15,7 @@ function NewPage() {
   
   export const getServerSideProps = async (context) => {
     //console.log('context'); console.log(context);
-    const res = await axios.get("https://repo-crudnext22.vercel.app/api/products");
+    const res = await axios.get("https://trialnext.herokuapp.com/api/products");
   
     return {
       props: {

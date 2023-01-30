@@ -45,14 +45,14 @@ export const getServerSideProps = async (context) => {
   
   const taskCron = async () => {
     console.log('Trigger taskCron');
-    const results = await axios.post("https://repo-crudnext22.vercel.app/api/random"); //https://repo-crudnext22.vercel.app
+    const results = await axios.post("https://trialnext.herokuapp.com/api/random"); 
     console.log(results);
   }; 
 
   //Execute every 10sec
-  cron.schedule("*/150 * * * * *",taskCron).start();
+  cron.schedule("*/5 * * * *",taskCron).start();
 
-  const res = await axios.get("https://repo-crudnext22.vercel.app/api/products");
+  const res = await axios.get("https://trialnext.herokuapp.com/api/products");
   //console.log(res.data);
   return {
     props: {
