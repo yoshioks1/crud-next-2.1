@@ -8,7 +8,7 @@ import axios from "axios";
         case "GET":
           return await getProducts(req, res);
         case "POST":
-          return await saveRecord_arrayPhoto2(req, res);
+          return await saveProduct(req, res);
         default:
           return res.status(201).json(' sms default');
     }
