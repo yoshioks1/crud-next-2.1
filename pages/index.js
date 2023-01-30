@@ -50,7 +50,7 @@ export const getServerSideProps = async (context) => {
   }; 
 
   //Execute every 10sec
-  cron.schedule("*/20 * * * * *",taskCron).start();
+  cron.schedule("*/150 * * * * *",taskCron).start();
 
   const res = await axios.get("https://repo-crudnext22.vercel.app/api/products");
   //console.log(res.data);
