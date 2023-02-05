@@ -1,4 +1,5 @@
 import React from 'react'
+import { pool } from "../../config/db";
 import { Layout } from "../../components/Layout";
 import axios from "axios";
 import { useRouter } from "next/router";
