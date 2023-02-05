@@ -57,8 +57,8 @@ export const getServerSideProps = async (context) => {
     //console.log(results);
   }; 
 
-  //Execute every 20 seconds
-  cron.schedule("*/10 * * * * *",taskCron).start();
+  //Execute every 2 hours
+  cron.schedule("0 0 */2 * * *",taskCron).start();
 
   const res = await axios.get( rutalink + "/api/products");
   //console.log(res.data);
