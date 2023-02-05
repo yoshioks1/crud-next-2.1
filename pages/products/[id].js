@@ -62,7 +62,7 @@ export const getServerSideProps = async ({ query }) => {
   var rutalink = ruta[0].link_value;
 
   const { data: product} = await axios.get(
-    rutalink + "/api/products/" + query.id
+    rutalink + "api/products/" + query.id
   );
 
   //console.log(product)
