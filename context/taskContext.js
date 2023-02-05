@@ -7,6 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 export const TaskContext = createContext();
 
 export const TasksProvider = ({ children }) => {
+  const hello = "world";
+  const raiz = "http://localhost:3000/"; //http://localhost:3000 //https://trialnext.herokuapp.com
 
   const [products, setProducts] = useState([]);
   const [ModalDelete, setModalDelete] = useState(false);//Var para renderizar Delete modal window
@@ -14,7 +16,7 @@ export const TasksProvider = ({ children }) => {
   const router = useRouter();
 
   async function loadProducts(){
-    const res = await axios.get("https://trialnext.herokuapp.com/api/products");  // https://repo-crudnext22.vercel.app/api/products
+    const res = await axios.get("http://localhost:3000/api/products");  // https://repo-crudnext22.vercel.app/api/products
     //console.log(res.data);
     setProducts(res.data);
     //console.log(response.data);
@@ -53,11 +55,11 @@ export const TasksProvider = ({ children }) => {
   }
 
 
-  const hello = "world";
+
 
   return (
       <TaskContext.Provider value={{
-        hello,
+        hello,raiz,
         products:products, loadProducts,
         showDeleteModal,ModalDelete,DeleteProduct,
         showUpdateModal,ModalUpdate,UpdateProduct

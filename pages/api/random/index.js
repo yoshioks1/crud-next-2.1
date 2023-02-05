@@ -40,7 +40,7 @@ import axios from "axios";
           ]);
           princiArray.push(unis_array);     
       }//loop number  
-      console.log(princiArray);
+      //console.log(princiArray);
           
       const result = await pool.query("INSERT INTO nx_product (name, description, price) VALUES  ?",[princiArray]);
       return res.status(200).json({ ...req.body, id: result.insertId });
@@ -50,19 +50,37 @@ import axios from "axios";
     }
   }
 
+  const getLastInsertRowID = async (req, res) => {
+    try {
+      const results = await pool.query("SELECT Max(unis_number) as higher_id FROM tb_unirecord");
+      return res.status(200).json(results);
+    } catch (error) {
+      return res.status(500).json({ error });
+    }
+  };
+
   const saveRecord_arrayUniSearch = async (req, res) => {
     try {
-      console.log('hola array unis search');
+      //console.log('hola array unis search');
+      const max_insert = await pool.query("SELECT Max(unis_number) as higher_id FROM tb_unirecord");
+      var max_insert_num = parseInt(max_insert[0].higher_id);
+      //Puede dar NaN en caso no tenga registros en la tabla mysql
+      if (isNaN(max_insert_num)) {
+        var max_insert_num = 0;
+      } 
+
+      //console.log(max_insert_num);
+
       const resu = await axios.get("http://universities.hipolabs.com/search");//https://jsonplaceholder.typicode.com/photos  //http://universities.hipolabs.com/search?country=Peru
      // console.log(resu.data);
-      let number = 0;
+      let number = max_insert_num;
       let null_value = null;
       const princiArray = [];
       
-      for (var i = 0; i < 20; i++) {
+      for (var i = 0; i < 10; i++) {
           number++;           
           const unis_array = ([
-            
+            number,
             resu.data[number].country,
             resu.data[number].domains[0] = null_value ? '-' : resu.data[number].domains[0],
             resu.data[number].alpha_two_code,
@@ -72,13 +90,13 @@ import axios from "axios";
           ]);
           princiArray.push(unis_array);     
       }//loop number  
-      console.log(princiArray);
+      //console.log(princiArray);
           
-      const result = await pool.query("INSERT INTO tb_unirecord (country, domains, alpha_two_code, state_province, uni_name, web_pages) VALUES  ?",[princiArray]);
-      console.log(result);
+      const result = await pool.query("INSERT INTO tb_unirecord (unis_number, country, domains, alpha_two_code, state_province, uni_name, web_pages) VALUES  ?",[princiArray]);
+      //console.log(result);
       return res.status(200).json({ ...req.body, id: result.insertId });
    
-     
+    
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }

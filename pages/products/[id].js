@@ -60,7 +60,7 @@ export const getServerSideProps = async ({ query }) => {
   console.log(query);
 
   const { data: product} = await axios.get(
-    "https://repo-crudnext22.vercel.app/api/products/" + query.id
+    "http://localhost:3000/api/products/" + query.id
   );
 
   //console.log(product)
