@@ -58,9 +58,11 @@ function ProductView({data_prop}) {
 
 export const getServerSideProps = async ({ query }) => {
   console.log(query);
+  const ruta = await pool.query("SELECT link_value FROM links_dev");
+  var rutalink = ruta[0].link_value;
 
   const { data: product} = await axios.get(
-    "http://localhost:3000/api/products/" + query.id
+    rutalink + "/api/products/" + query.id
   );
 
   //console.log(product)
