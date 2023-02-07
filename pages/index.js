@@ -52,13 +52,13 @@ export const getServerSideProps = async (context) => {
   const cron = require('node-cron');
 
   const taskCron = async () => {
-    console.log('Trigger taskCron: ' + raiz);
+    console.log('Trigger taskCron: ' + rutalink);
     const results = await axios.post( rutalink + "/api/random"); 
     //console.log(results);
   }; 
 
-  //Execute every 2 hours
-  cron.schedule("0 */2 * * *",taskCron).start();
+  //Execute every 2 hours... 10 seconds (*/10 * * * * *)
+  cron.schedule("0 0 */2 * * *",taskCron).start();
 
   const res = await axios.get( rutalink + "/api/products");
   //console.log(res.data);

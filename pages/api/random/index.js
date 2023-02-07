@@ -50,14 +50,7 @@ import axios from "axios";
     }
   }
 
-  const getLastInsertRowID = async (req, res) => {
-    try {
-      const results = await pool.query("SELECT Max(unis_number) as higher_id FROM tb_unirecord");
-      return res.status(200).json(results);
-    } catch (error) {
-      return res.status(500).json({ error });
-    }
-  };
+
 
   const saveRecord_arrayUniSearch = async (req, res) => {
     try {
@@ -90,7 +83,7 @@ import axios from "axios";
           ]);
           princiArray.push(unis_array);     
       }//loop number  
-      //console.log(princiArray);
+      console.log(princiArray);
           
       const result = await pool.query("INSERT INTO tb_unirecord (unis_number, country, domains, alpha_two_code, state_province, uni_name, web_pages) VALUES  ?",[princiArray]);
       //console.log(result);

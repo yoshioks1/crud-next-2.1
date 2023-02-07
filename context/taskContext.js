@@ -8,7 +8,7 @@ export const TaskContext = createContext();
 
 export const TasksProvider = ({ children }) => {
   const hello = "world";
-  const raiz = "https://trialnext.herokuapp.com/"; //http://localhost:3000 //https://trialnext.herokuapp.com
+  const raiz = "https://trialnext.herokuapp.com"; //http://localhost:3000 //https://trialnext.herokuapp.com
 
   const [products, setProducts] = useState([]);
   const [ModalDelete, setModalDelete] = useState(false);//Var para renderizar Delete modal window
